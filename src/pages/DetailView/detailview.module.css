@@ -1,0 +1,13 @@
+.habitList{
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    height: 90vh;
+}
+
+.loadingContainer{
+    display: flex;
+    padding: 40%;
+    justify-content: center;
+    align-items: center;
+}

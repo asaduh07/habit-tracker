@@ -1,0 +1,31 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 2px;
+    padding: 2% 3%;
+    box-shadow: 2px 2px 1px blue;
+    background-color: whitesmoke;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title{
+    color: maroon;
+}
+.options{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.options img{
+    max-width: 20px;
+}
+.details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

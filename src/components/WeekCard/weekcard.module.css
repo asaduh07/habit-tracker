@@ -1,0 +1,33 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 2px;
+    padding: 2%;
+    box-shadow: 2px 2px 1px rgb(32, 30, 30);
+    background-color: white
+}
+
+.title {
+    color: maroon;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.days {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin: 2% 0%;
+    padding: 2%;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
