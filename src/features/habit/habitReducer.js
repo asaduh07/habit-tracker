@@ -44,59 +44,36 @@ const updateStatuses = (storedStatuses) => {
 };
 
 
-// const calculateStreaks = (statuses) => {
-//     let currentStreak = 0;
-//     let bestStreak = 0;
-//     let totalDays = 0;
-//     let ongoingStreak = true;
 
-//     for (let i = statuses.length - 1; i >= 0; i--) {
-//         if (statuses[i].status === 'done') {
-//             currentStreak++;
-//             totalDays++;
-//         } else {
-//             ongoingStreak = false;
-//             if (currentStreak > bestStreak) {
-//                 bestStreak = currentStreak;
-//             }
-//             currentStreak = 0;
-//         }
-//     }
-
-//     if (ongoingStreak && currentStreak > bestStreak) {
-//         bestStreak = currentStreak;
-//     }
-
-//     return { currentStreak, bestStreak, totalDays };
-// };
 
 const calculateStreaks = (statuses) => {
     let currentStreak = 0;
     let bestStreak = 0;
     let totalDays = 0;
-    let ongoingStreak = true;
+    let ongoingStreak = false; // Initialize to false as we are starting to process the statuses
 
     for (let i = statuses.length - 1; i >= 0; i--) {
         if (statuses[i].status === 'done') {
             currentStreak++;
             totalDays++;
-        } else if (statuses[i].status === 'undone') {
+            ongoingStreak = true; // Set ongoing streak to true if a "done" status is found
+        } else {
             if (currentStreak > bestStreak) {
                 bestStreak = currentStreak;
             }
-            ongoingStreak = false;
             currentStreak = 0;
-        } else if (statuses[i].status === 'none') {
-            ongoingStreak = false;
+            ongoingStreak = false; // Reset ongoing streak to false if a non-"done" status is found
         }
     }
 
-    if (ongoingStreak && currentStreak > bestStreak) {
+    // After the loop, check one last time if the current streak is the best streak
+    if (currentStreak > bestStreak) {
         bestStreak = currentStreak;
     }
 
     return { currentStreak, bestStreak, totalDays };
 };
+
 
 
 
