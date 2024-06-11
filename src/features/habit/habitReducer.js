@@ -44,6 +44,32 @@ const updateStatuses = (storedStatuses) => {
 };
 
 
+// const calculateStreaks = (statuses) => {
+//     let currentStreak = 0;
+//     let bestStreak = 0;
+//     let totalDays = 0;
+//     let ongoingStreak = true;
+
+//     for (let i = statuses.length - 1; i >= 0; i--) {
+//         if (statuses[i].status === 'done') {
+//             currentStreak++;
+//             totalDays++;
+//         } else {
+//             ongoingStreak = false;
+//             if (currentStreak > bestStreak) {
+//                 bestStreak = currentStreak;
+//             }
+//             currentStreak = 0;
+//         }
+//     }
+
+//     if (ongoingStreak && currentStreak > bestStreak) {
+//         bestStreak = currentStreak;
+//     }
+
+//     return { currentStreak, bestStreak, totalDays };
+// };
+
 const calculateStreaks = (statuses) => {
     let currentStreak = 0;
     let bestStreak = 0;
@@ -54,12 +80,14 @@ const calculateStreaks = (statuses) => {
         if (statuses[i].status === 'done') {
             currentStreak++;
             totalDays++;
-        } else {
-            ongoingStreak = false;
+        } else if (statuses[i].status === 'undone') {
             if (currentStreak > bestStreak) {
                 bestStreak = currentStreak;
             }
+            ongoingStreak = false;
             currentStreak = 0;
+        } else if (statuses[i].status === 'none') {
+            ongoingStreak = false;
         }
     }
 
@@ -69,6 +97,7 @@ const calculateStreaks = (statuses) => {
 
     return { currentStreak, bestStreak, totalDays };
 };
+
 
 
 export const changeStatusAsync = createAsyncThunk('change/status', async (payload, { rejectWithValue }) => {
