@@ -58,7 +58,6 @@ const calculateStreaks = (statuses) => {
                 bestStreak = currentStreak;
             }
         } else {
-            totalDays++;
             currentStreak = 0; // Reset current streak when an undone status is found
         }
     }
