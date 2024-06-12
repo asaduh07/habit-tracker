@@ -45,30 +45,22 @@ const updateStatuses = (storedStatuses) => {
 
 
 
-
 const calculateStreaks = (statuses) => {
     let currentStreak = 0;
     let bestStreak = 0;
     let totalDays = 0;
-    let ongoingStreak = false; // Initialize to false as we are starting to process the statuses
 
-    for (let i = statuses.length - 1; i >= 0; i--) {
+    for (let i = 0; i < statuses.length; i++) {
         if (statuses[i].status === 'done') {
             currentStreak++;
             totalDays++;
-            ongoingStreak = true; // Set ongoing streak to true if a "done" status is found
-        } else {
             if (currentStreak > bestStreak) {
                 bestStreak = currentStreak;
             }
-            currentStreak = 0;
-            ongoingStreak = false; // Reset ongoing streak to false if a non-"done" status is found
+        } else {
+            totalDays++;
+            currentStreak = 0; // Reset current streak when an undone status is found
         }
-    }
-
-    // After the loop, check one last time if the current streak is the best streak
-    if (currentStreak > bestStreak) {
-        bestStreak = currentStreak;
     }
 
     return { currentStreak, bestStreak, totalDays };
